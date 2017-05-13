@@ -27,7 +27,8 @@ RUN apk upgrade --no-cache \
         mbedtls-dev \
         pcre-dev \
         tar \
-        udns-dev
+        zlib-dev \
+        libressl-dev
 
 RUN curl -sSLO https://github.com/shadowsocksr/shadowsocksr-libev/archive/$SSR_LIBEV_VERSION.tar.gz \
     && tar -zxf $SSR_LIBEV_VERSION.tar.gz \
