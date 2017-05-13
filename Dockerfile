@@ -1,6 +1,6 @@
 FROM alpine:3.5
 
-MAINTAINER mritd <mritd@mritd.me>
+MAINTAINER billyplus <billyplus@me>
 
 ENV TZ 'Asia/Shanghai'
 
