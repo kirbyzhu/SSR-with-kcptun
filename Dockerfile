@@ -27,24 +27,28 @@ RUN apk upgrade --no-cache \
         mbedtls-dev \
         pcre-dev \
         tar \
-        udns-dev \
-    && curl -sSLO https://github.com/shadowsocksr/shadowsocksr-libev/archive/$SSR_LIBEV_VERSION.tar.gz \
+        udns-dev
+
+RUN curl -sSLO https://github.com/shadowsocksr/shadowsocksr-libev/archive/$SSR_LIBEV_VERSION.tar.gz \
     && tar -zxf $SSR_LIBEV_VERSION.tar.gz \
     && cd shadowsocksr-libev-$SSR_LIBEV_VERSION \
     && ./configure --prefix=/usr --disable-documentation \
-    && make install && cd ../ \
-    && curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
+    && make install && cd ../
+
+RUN curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/kcptun-linux-amd64-$KCP_VERSION.tar.gz \
     && tar -zxf kcptun-linux-amd64-$KCP_VERSION.tar.gz \
-    && mv server_linux_amd64 /usr/bin/kcptun \
-    && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && mv server_linux_amd64 /usr/bin/kcptun
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && runDeps="$( \
         scanelf --needed --nobanner /usr/bin/ss-* \
             | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
             | xargs -r apk info --installed \
             | sort -u \
-        )" \
-    && apk add --no-cache --virtual .run-deps $runDeps \
+        )"
+
+RUN apk add --no-cache --virtual .run-deps $runDeps \
     && apk del .build-deps \
     && rm -rf client_linux_amd64 \
         kcptun-linux-amd64-$KCP_VERSION.tar.gz \
