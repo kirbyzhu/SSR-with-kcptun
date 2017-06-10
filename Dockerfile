@@ -2,8 +2,6 @@ FROM alpine:3.5
 
 MAINTAINER billyplus <billyplus@me>
 
-ENV TZ 'Asia/Shanghai'
-
 ENV KCP_VERSION 20170329
 ENV KCP_CONFIG "-t 127.0.0.1:8388 -l :8300 -mode fast2"
 ENV KCP_FLAG "true"
@@ -35,8 +33,6 @@ RUN apk add --no-cache --virtual .run-deps $runDeps \
     && apk del .build-deps \
     && rm -rf client_linux_amd64 \
         kcptun-linux-amd64-$KCP_VERSION.tar.gz \
-        shadowsocks-libev-$SSR_LIBEV_VERSION.tar.gz \
-        shadowsocks-libev-$SSR_LIBEV_VERSION \
         /var/cache/apk/*
 
 ADD entrypoint.sh /entrypoint.sh
