@@ -1,6 +1,4 @@
-FROM alpine:3.5
-
-MAINTAINER billyplus <billyplus@me>
+FROM frolvlad/alpine-python2
 
 ENV KCP_VERSION 20170329
 ENV KCP_CONFIG "-t 127.0.0.1:8388 -l :8300 -mode fast2"
@@ -39,8 +37,6 @@ ADD entrypoint.sh /entrypoint.sh
 
 RUN chmod -R 755 /entrypoint.sh
 
-EXPOSE 8388
-
-EXPOSE 8300
+EXPOSE 8388 8300
 
 ENTRYPOINT ["/entrypoint.sh"]
