@@ -8,9 +8,9 @@ ENV SSR_LIBEV_VERSION 2.4.1
 
 ENV KCP_VERSION 20170329
 
-ENV SS_CONFIG "-s 0.0.0.0 -p 8288 -m aes-256-cfb -k testtest --fast-open"
+ENV SS_CONFIG "-s 0.0.0.0 -p 8388 -m aes-256-cfb -k walldigssr --fast-open"
 ENV SS_MODULE "ss-server"
-ENV KCP_CONFIG "-t 127.0.0.1:8288 -l :8300 -mode fast2"
+ENV KCP_CONFIG "-t 127.0.0.1:8388 -l :8300 -mode fast2"
 ENV KCP_FLAG "true"
 
 RUN apk upgrade --no-cache \
@@ -61,7 +61,7 @@ ADD entrypoint.sh /entrypoint.sh
 
 RUN chmod -R 755 /entrypoint.sh
 
-EXPOSE 8288
+EXPOSE 8388
 
 EXPOSE 8300
 
