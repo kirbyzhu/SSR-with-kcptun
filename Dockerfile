@@ -1,8 +1,14 @@
-FROM frolvlad/alpine-python2
+FROM alpine:3.6
 
 ENV KCP_VERSION 20170329
 ENV KCP_CONFIG "-t 127.0.0.1:8388 -l :8300 -mode fast2"
 ENV KCP_FLAG "true"
+
+RUN apk add --no-cache python && \
+    python -m ensurepip && \
+    rm -r /usr/lib/python*/ensurepip && \
+    pip install --upgrade pip setuptools && \
+    rm -r /root/.cache
 
 RUN apk upgrade --no-cache \
     && apk add --no-cache bash tzdata libsodium \
