@@ -15,7 +15,7 @@ RUN apk upgrade --no-cache \
     && apk add --no-cache --virtual .build-deps \
         autoconf \
         build-base \
-        curl git tar\
+        curl git tar
 
 RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git ssr
 
