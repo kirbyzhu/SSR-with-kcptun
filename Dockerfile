@@ -25,7 +25,7 @@ RUN curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/k
 
 RUN apk add --no-cache --virtual .run-deps $runDeps \
     && apk del .build-deps bash tzdata libsodium autoconf build-base \
-               curl git\
+               curl git tar\
     && rm -rf client_linux_amd64 \
         kcptun-linux-amd64-$KCP_VERSION.tar.gz \
         /var/cache/apk/*
