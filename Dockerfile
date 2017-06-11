@@ -16,16 +16,6 @@ RUN apk upgrade --no-cache \
         autoconf \
         build-base \
         curl git\
-        libev-dev \
-        libtool \
-        linux-headers \
-        udns-dev \
-        libsodium-dev \
-        mbedtls-dev \
-        pcre-dev \
-        tar \
-        zlib-dev \
-        libressl-dev
 
 RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git ssr
 
@@ -36,16 +26,6 @@ RUN curl -sSLO https://github.com/xtaci/kcptun/releases/download/v$KCP_VERSION/k
 RUN apk add --no-cache --virtual .run-deps $runDeps \
     && apk del .build-deps bash tzdata libsodium autoconf build-base \
                curl git\
-                libev-dev \
-                libtool \
-                linux-headers \
-                udns-dev \
-                libsodium-dev \
-                mbedtls-dev \
-                pcre-dev \
-                tar \
-                zlib-dev \
-                libressl-dev \
     && rm -rf client_linux_amd64 \
         kcptun-linux-amd64-$KCP_VERSION.tar.gz \
         /var/cache/apk/*
