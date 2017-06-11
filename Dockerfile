@@ -45,7 +45,7 @@ RUN apk add --no-cache --virtual .run-deps $runDeps \
                 pcre-dev \
                 tar \
                 zlib-dev \
-                libressl-dev
+                libressl-dev \
     && rm -rf client_linux_amd64 \
         kcptun-linux-amd64-$KCP_VERSION.tar.gz \
         /var/cache/apk/*
